@@ -1,4 +1,5 @@
-﻿using BOOKSTORE.Contexts;
+﻿using AutoMapper;
+using BOOKSTORE.Contexts;
 using BOOKSTORE.Shared;
 
 namespace BOOKSTORE.Queries
@@ -7,10 +8,12 @@ namespace BOOKSTORE.Queries
     {
         private readonly BookStoreDbContext _context;
         public int BookId { get; set; }
+        private readonly IMapper _mapper;
 
-        public GetById(BookStoreDbContext context)
+        public GetById(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public BookDetailViewModel Handle()
         {
@@ -19,11 +22,8 @@ namespace BOOKSTORE.Queries
             {
                 throw new InvalidOperationException("Book already exists");
             }
-            BookDetailViewModel model = new BookDetailViewModel();
-            model.Title = book.Title;
-            model.PageCount= book.PageCount;
-            model.PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy");
-            model.Genre=((GenreEnum)book.GenreId).ToString();   
+            BookDetailViewModel model = _mapper.Map<BookDetailViewModel>(book);
+          
             return model;
 
         }

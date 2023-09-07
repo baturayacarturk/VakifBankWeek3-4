@@ -8,6 +8,7 @@ namespace BOOKSTORE
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }

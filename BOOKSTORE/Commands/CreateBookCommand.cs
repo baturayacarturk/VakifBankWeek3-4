@@ -1,4 +1,5 @@
-﻿using BOOKSTORE.Contexts;
+﻿using AutoMapper;
+using BOOKSTORE.Contexts;
 using BOOKSTORE.Entities;
 
 namespace BOOKSTORE.Commands
@@ -7,9 +8,11 @@ namespace BOOKSTORE.Commands
     {
         public CreateBookModel Model { get; set; }
         private readonly BookStoreDbContext _context;
-        public CreateBookCommand(BookStoreDbContext context)
+        private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -19,12 +22,7 @@ namespace BOOKSTORE.Commands
             {
                 throw new InvalidOperationException("Book already exists");
             }
-            result = new Book();
-            result.Title = Model.Title;
-            result.PublishDate = Model.PublishDate;
-            result.PageCount = Model.PageCount;
-            result.GenreId=Model.GenreId;
-
+            result = _mapper.Map<Book>(Model);
             _context.Add(result);
             _context.SaveChanges();
         }

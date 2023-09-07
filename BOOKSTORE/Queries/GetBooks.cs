@@ -1,4 +1,5 @@
-﻿using BOOKSTORE.Contexts;
+﻿using AutoMapper;
+using BOOKSTORE.Contexts;
 using BOOKSTORE.Entities;
 using BOOKSTORE.Shared;
 
@@ -7,26 +8,18 @@ namespace BOOKSTORE.Queries
     public class GetBooks
     {
         private readonly BookStoreDbContext _context;
-        
-        public GetBooks(BookStoreDbContext context)
+        private readonly IMapper _mapper;
+
+        public GetBooks(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public List<BooksViewModel> Handle()
         {
             var bookList = _context.Books.OrderBy(x => x.Id).ToList();
-            List<BooksViewModel> booksModel = new List<BooksViewModel>();
-            foreach(var item in bookList)
-            {
-                booksModel.Add(new BooksViewModel
-                {
-                    Title = item.Title,
-                    Genre = ((GenreEnum)item.GenreId).ToString(),
-                    PublishDate = item.PublishDate.Date.ToString("dd/MM/yyyy"),
-                    PageCount = item.PageCount, 
-                }); 
-            }
+            List<BooksViewModel> booksModel = _mapper.Map<List<BooksViewModel>>(bookList);
             return booksModel;
         }
     }
