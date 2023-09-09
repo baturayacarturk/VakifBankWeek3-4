@@ -9,9 +9,9 @@ namespace BOOKSTORE.Application.AuthorOperations.Commands
     {
         private readonly IMapper _mapper;
         public CreateAuthorModel Model { get; set; }
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public CreateAuthorCommand(IMapper mapper, BookStoreDbContext context)
+        public CreateAuthorCommand(IMapper mapper, IBookStoreDbContext context)
         {
             _mapper = mapper;
             _context = context;
@@ -21,7 +21,7 @@ namespace BOOKSTORE.Application.AuthorOperations.Commands
             var result = _context.Authors.SingleOrDefault(x=>x.FirstName == Model.FirstName&& x.LastName == Model.LastName&&x.BirthDate==Model.BirthDate);
             if (result != null) throw new InvalidOperationException("Author is already exists");
             var toBeAdded = _mapper.Map<Author>(Model);
-            _context.Add(toBeAdded);
+            _context.Authors.Add(toBeAdded);
             _context.SaveChanges();
         }
     }

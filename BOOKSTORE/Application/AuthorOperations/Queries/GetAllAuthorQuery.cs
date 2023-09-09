@@ -7,9 +7,9 @@ namespace BOOKSTORE.Application.AuthorOperations.Queries
 {
     public class GetAllAuthorQuery
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public GetAllAuthorQuery(BookStoreDbContext context, IMapper mapper)
+        public GetAllAuthorQuery(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

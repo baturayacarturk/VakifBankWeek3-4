@@ -6,8 +6,8 @@ namespace BOOKSTORE.Application.BookOperations.Commands
     public class DeleteCommand
     {
         public int BookId { get; set; }
-        private readonly BookStoreDbContext _context;
-        public DeleteCommand(BookStoreDbContext context)
+        private readonly IBookStoreDbContext _context;
+        public DeleteCommand(IBookStoreDbContext context)
         {
             _context = context;
         }

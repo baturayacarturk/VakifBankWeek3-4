@@ -6,11 +6,11 @@ namespace BOOKSTORE.Application.BookOperations.Queries
 {
     public class GetById
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         public int BookId { get; set; }
         private readonly IMapper _mapper;
 
-        public GetById(BookStoreDbContext context, IMapper mapper)
+        public GetById(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

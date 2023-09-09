@@ -1,4 +1,5 @@
-﻿using BOOKSTORE.Services;
+﻿using BOOKSTORE.Contexts;
+using BOOKSTORE.Services;
 using FluentValidation;
 using System.Reflection;
 
@@ -11,6 +12,7 @@ namespace BOOKSTORE
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddSingleton<ILoggerService, ConsoleLogger>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddSingleton<IBookStoreDbContext, BookStoreDbContext>();
             return services;
         }
     }

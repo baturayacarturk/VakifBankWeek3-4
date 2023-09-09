@@ -8,9 +8,9 @@ namespace BOOKSTORE.Application.GenreOperations.Commands
     {
         private readonly IMapper _mapper;
         public int GenreId { get; set; }
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public DeleteGenreCommand(IMapper mapper, BookStoreDbContext context)
+        public DeleteGenreCommand(IMapper mapper, IBookStoreDbContext context)
         {
             _mapper = mapper;
             _context = context;

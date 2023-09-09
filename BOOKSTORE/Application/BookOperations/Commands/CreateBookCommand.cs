@@ -7,9 +7,9 @@ namespace BOOKSTORE.Application.BookOperations.Commands
     public class CreateBookCommand
     {
         public CreateBookModel Model { get; set; }
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
+        public CreateBookCommand(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -23,7 +23,7 @@ namespace BOOKSTORE.Application.BookOperations.Commands
                 throw new InvalidOperationException("Book already exists");
             }
             result = _mapper.Map<Book>(Model);
-            _context.Add(result);
+            _context.Books.Add(result);
             _context.SaveChanges();
         }
         public class CreateBookModel

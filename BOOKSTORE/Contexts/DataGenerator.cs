@@ -68,7 +68,7 @@ namespace BOOKSTORE.Contexts
                         GenreId = 1,
                         PageCount = 200,
                         PublishDate = DateTime.Now,
-                        AuthorId = authors[0].Id
+                        Author = authors[0].Id
                     },
                     new Book
                     {

@@ -6,9 +6,9 @@ namespace BOOKSTORE.Application.BookOperations.Commands
     public class UpdateBookCommand
     {
         public int BookId { get; set; }
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         public UpdateBookModel Model { get; set; }
-        public UpdateBookCommand(BookStoreDbContext context)
+        public UpdateBookCommand(IBookStoreDbContext context)
         {
             _context = context;
         }

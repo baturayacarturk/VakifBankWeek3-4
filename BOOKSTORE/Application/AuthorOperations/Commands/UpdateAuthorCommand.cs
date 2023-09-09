@@ -8,10 +8,10 @@ namespace BOOKSTORE.Application.AuthorOperations.Commands
     {
         public int AuthorId { get; set; }
         private readonly IMapper _mapper;
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         public AuthorUpdateViewModel Model;
 
-        public UpdateAuthorCommand(IMapper mapper, BookStoreDbContext context)
+        public UpdateAuthorCommand(IMapper mapper, IBookStoreDbContext context)
         {
             _mapper = mapper;
             _context = context;
