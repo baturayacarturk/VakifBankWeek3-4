@@ -2,6 +2,7 @@ using BOOKSTORE.Contexts;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
 using BOOKSTORE;
+using BOOKSTORE.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +33,7 @@ if (app.Environment.IsDevelopment())
         // Ensure the database is created
         context.Database.EnsureCreated();
 
-        
+
         if (!context.Books.Any())
         {
             DataGenerator.Initialize(services);
@@ -41,7 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.ConfigureCustomExceptionMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();

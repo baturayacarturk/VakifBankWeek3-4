@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using BOOKSTORE.Commands;
+using BOOKSTORE.Application.BookOperations.Commands;
+using BOOKSTORE.Application.BookOperations.Queries;
 using BOOKSTORE.Contexts;
 using BOOKSTORE.Entities;
-using BOOKSTORE.Queries;
-using BOOKSTORE.Validations;
+using BOOKSTORE.Validations.Books;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static BOOKSTORE.Commands.CreateBookCommand;
-using static BOOKSTORE.Commands.UpdateBookCommand;
+using static BOOKSTORE.Application.BookOperations.Commands.CreateBookCommand;
+using static BOOKSTORE.Application.BookOperations.Commands.UpdateBookCommand;
 
 namespace BOOKSTORE.Controllers
 {
